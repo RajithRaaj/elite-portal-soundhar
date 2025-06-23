@@ -37,8 +37,9 @@
             background-color: var(--dark-bg);
             color: var(--dark-text);
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column; /* Changed to column to stack card and watermark */
+            justify-content: flex-start;
+            align-items: center;
             /* Changed to flex-start to align items to the top */
             padding-top: 5vh;
             /* Added padding to lift the card from the top */
@@ -423,12 +424,10 @@
         }
         /* Watermark */
         .card-footer-watermark {
-            position: absolute;
-            bottom: 0.75rem; /* Adjusted to be closer to the bottom */
-            left: 0;
-            width: 100%;
+            margin-top: 2rem; /* Spacing below the card */
             text-align: center;
-            z-index: 15; /* Above other card content but below theme toggle */
+            padding-bottom: 1rem; /* Ensure some space at the very bottom */
+            z-index: 1; /* Below the card */
         }
         /* About Me Section specific styles */
         #aboutSection {
@@ -473,19 +472,16 @@
             </button>
             <div id="lottie-background"></div>
             <div class="flex flex-col items-center gap-2">
-                <img src="https://i.ibb.co/j9HXgSHp/logo-img.png" alt="Profile Picture" class="profile-img" id="profileImage">
+                <img src="https://i.ibb.co/3yfW4hNX/Untitled-design-19-photoaidcom-cropped.png" alt="Profile Picture" class="profile-img" id="profileImage">
                 <h1 class="name" id="profileName">Soundhar</h1>
                 <p class="tagline" id="profileTagline">Visionary Founder | AI Pioneer</p>
                 <div class="micro-stats flex justify-center gap-2">
-                    <span>3 Startups</span>
-                    <span>2 Exits</span>
-                    <span>AI Strategist</span>
-                </div>
+                    </div>
             </div>
             <div class="flex flex-col items-center gap-2 w-full flex-grow">
                 <div class="contact-info text-center">
-                    <p class="text-lg"><i class="fas fa-phone mr-2"></i> <span id="phoneNumber" class="cursor-pointer hover:underline"> +91 93846 64484</span></p>
-                    <p class="text-lg mt-2"><i class="fas fa-envelope mr-2"></i> <span id="emailAddress" class="cursor-pointer hover:underline"> contact@rajithraaj.com</span></p>
+                    <p class="text-lg"><i class="fas fa-phone mr-2"></i> <span id="phoneNumber" class="cursor-pointer hover:underline"></span></p>
+                    <p class="text-lg mt-2"><i class="fas fa-envelope mr-2"></i> <span id="emailAddress" class="cursor-pointer hover:underline"></span></p>
                 </div>
                 <div class="social-icons flex gap-6 text-3xl mt-2">
                     </div>
@@ -494,9 +490,6 @@
                     <button class="action-button" id="shareCard"><i class="fas fa-share-alt"></i> Share Card</button>
                 </div>
             </div>
-            <p class="text-xs text-gray-500 card-footer-watermark">
-                <a href="https://zenora-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:underline">ZENORA AI © All Rights Reserved</a>
-            </p>
         </div>
         <div class="card card-back" id="cardBack">
             <h2 class="text-3xl font-bold mb-6 mt-4">Connect with me!</h2>
@@ -514,10 +507,6 @@
                     </div>
                 </div>
             </div>
-            <p class="text-xs text-gray-500 card-footer-watermark">
-                Elite SpaceCard 3.0 | <a href="https://zenora-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:underline">ZENORA AI ©</a>
-            </p>
-
             <div id="aboutSection" class="absolute inset-0 flex flex-col justify-between p-6 opacity-0 pointer-events-none transition-opacity duration-300">
                 <button id="backToMainBack" class="absolute top-4 left-4 text-xl text-gray-300 hover:text-white focus:outline-none z-30">
                     <i class="fas fa-arrow-left mr-2"></i> Back
@@ -526,12 +515,13 @@
                 <p class="text-base text-gray-300 text-center flex-grow overflow-y-auto custom-scrollbar leading-relaxed">
                     At Carrywings we boast experience and expertise in global logistics management services. Our clients can selectively or completely outsource the management and transportation of raw materials & finished goods in India as well as the overseas markets. This is complemented by our IT expertise, knowledge of systems and an ability to deliver precisely the right solution to custom set of requirements. Carrywings team is comprised of experts in supply chain and logistics management, commercial carrier management, logistics operations and execution and supply chain technology.
                 </p>
-                <p class="text-xs text-gray-500 card-footer-watermark">
-                    Elite SpaceCard 3.0 | <a href="https://zenora-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:underline">ZENORA AI ©</a>
-                </p>
-            </div>
+                </div>
         </div>
     </div>
+    <p class="text-xs text-gray-500 card-footer-watermark">
+        Elite SpaceCard 3.0 | <a href="https://zenora-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:underline">ZENORA AI ©</a>
+    </p>
+
     <div id="toast" class="toast"></div>
     <script>
         // --- Configuration & Data ---
@@ -539,25 +529,25 @@
             Founder: {
                 name: "Soundhar",
                 tagline: "Visionary Founder | AI Pioneer",
-                phoneNumber: "+91 9384664484", // Updated: Personal
-                emailAddress: "contact@rajithraaj.com",
-                microStats: ["3 Startups", "2 Exits", "AI Strategist"],
+                phoneNumber: "+91 9840028788", // Updated to the only number
+                emailAddress: "soundhar@carrywings.com", // Updated to the only email
+                microStats: ["2 Companies", "Entrepreneur"], // Updated
                 social: {
-                    linkedin: "https://linkedin.com/in/rajithraaj", // Assuming personal LinkedIn
+                    linkedin: "https://linkedin.com/in/rajithraaj",
                     instagram: "https://instagram.com/rajithraaj",
                     whatsapp: "https://wa.link/d13a9v",
-                    facebook: "https://www.facebook.com/carrywings" // Assuming this is for Carrywings general
+                    facebook: "https://www.facebook.com/carrywings"
                 }
             },
             "Carrywings Logistics": {
                 name: "Soundhar",
                 tagline: "Director, Carrywings Logistics | Global Supply Chain Expert",
-                phoneNumber: "+91 9840028788", // Updated: Work
-                emailAddress: "soundhar@carrywings.com", // Updated: Work
-                microStats: ["Global Logistics", "Freight Management", "Supply Chain Optimization"],
+                phoneNumber: "+91 9840028788", // Updated to the only number
+                emailAddress: "soundhar@carrywings.com", // Updated to the only email
+                microStats: ["2 Companies", "Entrepreneur", "Global Logistics", "Freight Management", "Supply Chain Optimization"], // Updated with new and specific stats
                 social: {
                     website: "https://carrywings.com/",
-                    linkedin: "https://linkedin.com/in/rajithraaj", // Assuming personal LinkedIn
+                    linkedin: "https://linkedin.com/in/rajithraaj",
                     whatsapp: "https://wa.link/d13a9v",
                     facebook: "https://www.facebook.com/carrywings",
                     instagram: "https://www.instagram.com/carrywings_lines/"
@@ -566,15 +556,15 @@
             "Carrywings Technologies": {
                 name: "Soundhar",
                 tagline: "Lead Architect, Carrywings Technologies | AI & Web Solutions",
-                phoneNumber: "+91 9840028788", // Updated: Work
-                emailAddress: "soundhar@carrywings.com", // Updated: Work
-                microStats: ["AI Development", "Web Solutions", "Innovation"],
+                phoneNumber: "+91 9840028788", // Updated to the only number
+                emailAddress: "soundhar@carrywings.com", // Updated to the only email
+                microStats: ["2 Companies", "Entrepreneur", "AI Development", "Web Solutions", "Innovation"], // Updated with new and specific stats
                 social: {
                     website: "https://carrywings-technologies.vercel.app/",
-                    linkedin: "https://linkedin.com/in/rajithraaj", // Assuming personal LinkedIn
+                    linkedin: "https://linkedin.com/in/rajithraaj",
                     whatsapp: "https://wa.link/d13a9v",
-                    facebook: "https://www.facebook.com/carrywings", // Assuming this is for Carrywings general
-                    instagram: "https://www.instagram.com/carrywings_lines/" // Assuming this is for Carrywings general
+                    facebook: "https://www.facebook.com/carrywings",
+                    instagram: "https://www.instagram.com/carrywings_lines/"
                 }
             }
         };
@@ -812,7 +802,7 @@
         });
         // Card Flip on Click/Tap
         cardContainer.addEventListener('click', (e) => {
-            const interactiveElements = ['A', 'BUTTON', 'INPUT', 'SPAN', 'P', 'IMG']; // Added IMG to prevent flipping when clicking images
+            const interactiveElements = ['A', 'BUTTON', 'INPUT', 'SPAN', 'P', 'IMG', 'H1', 'H2', 'H3', 'DIV']; // Added common interactive/content elements to prevent accidental flips
             if (e.target.closest(interactiveElements.map(tag => tag.toLowerCase()).join(','))) {
                 return;
             }
