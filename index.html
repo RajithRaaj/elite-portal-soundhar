@@ -424,11 +424,40 @@
         /* Watermark */
         .card-footer-watermark {
             position: absolute;
-            bottom: 1.5rem; /* Adjust as needed */
+            bottom: 0.75rem; /* Adjusted to be closer to the bottom */
             left: 0;
             width: 100%;
             text-align: center;
             z-index: 15; /* Above other card content but below theme toggle */
+        }
+        /* About Me Section specific styles */
+        #aboutSection {
+            background: var(--dark-card-bg); /* Use card background for consistency */
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 2rem; /* Match card border-radius */
+            text-align: left; /* Align text within about section */
+            /* Flex properties applied in HTML */
+            /* Ensure content within is scrollable */
+        }
+        #aboutSection.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        /* Custom scrollbar for about text */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--dark-neon-glow);
+            border-radius: 10px;
+        }
+        body.light-theme .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--light-neon-glow);
         }
     </style>
 </head>
@@ -443,20 +472,25 @@
                 <i class="fas fa-moon text-xl text-white"></i>
             </button>
             <div id="lottie-background"></div>
-            <div class="flex flex-col items-center gap-2"> <img src="https://i.ibb.co/j9HXgSHp/logo-img.png" alt="Profile Picture" class="profile-img" id="profileImage">
+            <div class="flex flex-col items-center gap-2">
+                <img src="https://i.ibb.co/j9HXgSHp/logo-img.png" alt="Profile Picture" class="profile-img" id="profileImage">
                 <h1 class="name" id="profileName">Soundhar</h1>
                 <p class="tagline" id="profileTagline">Visionary Founder | AI Pioneer</p>
-                <div class="micro-stats flex justify-center gap-2"> <span>3 Startups</span>
+                <div class="micro-stats flex justify-center gap-2">
+                    <span>3 Startups</span>
                     <span>2 Exits</span>
                     <span>AI Strategist</span>
                 </div>
             </div>
-            <div class="flex flex-col items-center gap-2 w-full flex-grow"> <div class="contact-info text-center">
-                    <p class="text-lg"><i class="fas fa-phone mr-2"></i> <span id="phoneNumber" class="cursor-pointer hover:underline"> +91 98765 43210</span></p>
+            <div class="flex flex-col items-center gap-2 w-full flex-grow">
+                <div class="contact-info text-center">
+                    <p class="text-lg"><i class="fas fa-phone mr-2"></i> <span id="phoneNumber" class="cursor-pointer hover:underline"> +91 93846 64484</span></p>
                     <p class="text-lg mt-2"><i class="fas fa-envelope mr-2"></i> <span id="emailAddress" class="cursor-pointer hover:underline"> contact@rajithraaj.com</span></p>
                 </div>
-                <div class="social-icons flex gap-6 text-3xl mt-2"> </div>
-                <div class="action-buttons flex flex-wrap justify-center gap-4 w-full px-4 mt-2"> <button class="action-button" id="addToContacts"><i class="fas fa-address-book"></i> Add to Contacts</button>
+                <div class="social-icons flex gap-6 text-3xl mt-2">
+                    </div>
+                <div class="action-buttons flex flex-wrap justify-center gap-4 w-full px-4 mt-2">
+                    <button class="action-button" id="addToContacts"><i class="fas fa-address-book"></i> Add to Contacts</button>
                     <button class="action-button" id="shareCard"><i class="fas fa-share-alt"></i> Share Card</button>
                 </div>
             </div>
@@ -467,7 +501,8 @@
         <div class="card card-back" id="cardBack">
             <h2 class="text-3xl font-bold mb-6 mt-4">Connect with me!</h2>
             <img src="https://i.ibb.co/rXyYzQW/soundhar-img.png" alt="Soundhar" class="back-profile-img">
-            <div class="flex flex-col items-center gap-4 mt-6">
+            <div class="flex flex-col items-center gap-4 mt-6" id="backMainContent">
+                <button class="action-button" id="aboutMeButton"><i class="fas fa-info-circle"></i> About Me</button>
                 <button class="action-button" id="copyEmailBack"><i class="fas fa-envelope"></i> Copy Email</button>
                 <button class="action-button" id="copyPhoneBack"><i class="fas fa-phone"></i> Copy Phone</button>
                 <div class="profile-mode-switcher flex flex-col items-center gap-3 mt-4">
@@ -482,6 +517,19 @@
             <p class="text-xs text-gray-500 card-footer-watermark">
                 Elite SpaceCard 3.0 | <a href="https://zenora-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:underline">ZENORA AI ©</a>
             </p>
+
+            <div id="aboutSection" class="absolute inset-0 flex flex-col justify-between p-6 opacity-0 pointer-events-none transition-opacity duration-300">
+                <button id="backToMainBack" class="absolute top-4 left-4 text-xl text-gray-300 hover:text-white focus:outline-none z-30">
+                    <i class="fas fa-arrow-left mr-2"></i> Back
+                </button>
+                <h3 class="text-2xl font-bold text-center mb-4 mt-12">About Carrywings</h3>
+                <p class="text-base text-gray-300 text-center flex-grow overflow-y-auto custom-scrollbar leading-relaxed">
+                    At Carrywings we boast experience and expertise in global logistics management services. Our clients can selectively or completely outsource the management and transportation of raw materials & finished goods in India as well as the overseas markets. This is complemented by our IT expertise, knowledge of systems and an ability to deliver precisely the right solution to custom set of requirements. Carrywings team is comprised of experts in supply chain and logistics management, commercial carrier management, logistics operations and execution and supply chain technology.
+                </p>
+                <p class="text-xs text-gray-500 card-footer-watermark">
+                    Elite SpaceCard 3.0 | <a href="https://zenora-ai.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:underline">ZENORA AI ©</a>
+                </p>
+            </div>
         </div>
     </div>
     <div id="toast" class="toast"></div>
@@ -491,7 +539,7 @@
             Founder: {
                 name: "Soundhar",
                 tagline: "Visionary Founder | AI Pioneer",
-                phoneNumber: "+91 98765 43210",
+                phoneNumber: "+91 9384664484", // Updated: Personal
                 emailAddress: "contact@rajithraaj.com",
                 microStats: ["3 Startups", "2 Exits", "AI Strategist"],
                 social: {
@@ -504,8 +552,8 @@
             "Carrywings Logistics": {
                 name: "Soundhar",
                 tagline: "Director, Carrywings Logistics | Global Supply Chain Expert",
-                phoneNumber: "+91 9840028788",
-                emailAddress: "soundhar@carrywings.com",
+                phoneNumber: "+91 9840028788", // Updated: Work
+                emailAddress: "soundhar@carrywings.com", // Updated: Work
                 microStats: ["Global Logistics", "Freight Management", "Supply Chain Optimization"],
                 social: {
                     website: "https://carrywings.com/",
@@ -518,8 +566,8 @@
             "Carrywings Technologies": {
                 name: "Soundhar",
                 tagline: "Lead Architect, Carrywings Technologies | AI & Web Solutions",
-                phoneNumber: "+91 98765 43210", // Keep the generic number if no specific one for tech
-                emailAddress: "dev@rajithraaj.com", // Keep the generic email if no specific one for tech
+                phoneNumber: "+91 9840028788", // Updated: Work
+                emailAddress: "soundhar@carrywings.com", // Updated: Work
                 microStats: ["AI Development", "Web Solutions", "Innovation"],
                 social: {
                     website: "https://carrywings-technologies.vercel.app/",
@@ -554,6 +602,13 @@
         const copyPhoneBackBtn = document.getElementById('copyPhoneBack');
         const profileModeButtons = document.querySelectorAll('.profile-mode-switcher button');
         const socialIconsContainer = document.querySelector('.social-icons');
+
+        // About Me Section DOM elements
+        const aboutMeButton = document.getElementById('aboutMeButton');
+        const aboutSection = document.getElementById('aboutSection');
+        const backToMainBack = document.getElementById('backToMainBack');
+        const backMainContent = document.getElementById('backMainContent'); // The wrapper for original content
+
         // --- Utility Functions ---
         // Show Toast Notification
         function showToast(message) {
@@ -828,6 +883,24 @@ END:VCARD`;
                 updateCardContent(button.dataset.mode);
             });
         });
+
+        // About Me Section Visibility Control
+        aboutMeButton.addEventListener('click', () => {
+            gsap.to(backMainContent, {opacity: 0, duration: 0.3, onComplete: () => {
+                backMainContent.style.display = 'none';
+                aboutSection.classList.add('show');
+                gsap.fromTo(aboutSection, {opacity: 0}, {opacity: 1, duration: 0.3});
+            }});
+        });
+
+        backToMainBack.addEventListener('click', () => {
+            gsap.to(aboutSection, {opacity: 0, duration: 0.3, onComplete: () => {
+                aboutSection.classList.remove('show');
+                backMainContent.style.display = 'flex'; // Restore flex display
+                gsap.fromTo(backMainContent, {opacity: 0}, {opacity: 1, duration: 0.3});
+            }});
+        });
+
         // --- Initialization ---
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
